@@ -10,7 +10,7 @@ const characterSchema = new mongoose.Schema({
     filiation: String,
     occupation: String,
     studentClass: String,
-    age: Number,
+    age: String,
     year: String,
     hair_color: String,
     eye_color: String,
