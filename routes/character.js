@@ -8,7 +8,7 @@ const characterSchema = new mongoose.Schema({
     name: String,
     gender: String,
     filiation: String,
-    ocupation: String,
+    occupation: String,
     studentClass: String,
     age: Number,
     year: String,
@@ -145,7 +145,7 @@ router.get('/last', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        const { name, exactMatch, gender, filiation, ocupation, age, year, hair_color, eye_color, studentClass } = req.query;
+        const { name, exactMatch, gender, filiation, occupation, age, year, hair_color, eye_color, studentClass } = req.query;
         const filter = {};
 
         if (name) {
@@ -163,9 +163,9 @@ router.get('/', async (req, res) => {
             const filiations = filiation.split(',');
             filter.filiation = { $in: filiations.map((filiation) => new RegExp(filiation, 'i')) };
         }
-        if (ocupation) {
-            const ocupations = ocupation.split(',');
-            filter.ocupation = { $in: ocupations.map((ocupation) => new RegExp(ocupation, 'i')) };
+        if (occupation) {
+            const occupations = occupation.split(',');
+            filter.occupation = { $in: occupations.map((occupation) => new RegExp(occupation, 'i')) };
         }
         if (studentClass) filter.studentClass = studentClass;
         if (age) filter.age = age;
@@ -223,7 +223,7 @@ router.patch('/:id', async (req, res) => {
                 name: req.body.name,
                 gender: req.body.gender,
                 filiation: req.body.filiation,
-                ocupation: req.body.ocupation,
+                occupation: req.body.occupation,
                 studentClass: req.body.studentClass,
                 hair_color: req.body.hair_color,
                 eye_color: req.body.eye_color,
