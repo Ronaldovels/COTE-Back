@@ -266,4 +266,15 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+router.delete('/delete/all', async (req, res) => {
+    try {
+        const deletedCharacters = await Character.deleteMany({});
+
+        res.status(200).json({ message: `${deletedCharacters.deletedCount} personagem(ns) removida(s) com sucesso` });
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao remover personagens', details: error.message });
+    }
+});
+
+
 module.exports = router
